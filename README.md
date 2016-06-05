@@ -2,39 +2,49 @@
 
 Anki is a spaced repetition flashcard program. Anki (暗記) is the Japanese word for memorization.
 
-A student is proposed a set of cards, one face of the card contains a question, the other face the answer.
-The student studies the question, tries to guess the answer and then looks if the answer he guessed was correct.
+A student is proposed a **Deck** of cards, one face of the **card** contains a **question**, the other face the **answer**.
+The **student** **studies** the question, tries to guess the answer and then looks if the answer he guessed was correct.
 
-The knowledge of a card follows the Fibonacci sequence, starting by 1. The knowledge of a card cannot be less than 1. 
+- If the student did not know the answer of the Card, he places the card in a **red box**
+- If he did know a part of the answer of the Card, he places the card in a **orange box**
+- If he did know the answer of the Card, he places the card in a **green box**
 
-We define Kcx as the current Knowledge of a Card X
-if the student did not know the answer of the Card X, he places the card in a red box. The knowledge of this card is considered bad and the knowledge Kcx dicreases of two steps in the Fibonacci sequence
-if the student did know a part of the answer, he places the card in an orange box, his knowledge of this card is considered ok, and the knowledge Kcx increases of one step in the Fibonacci sequence
-if the student did know the answer, he places the card in an green box, his knowledge of this card is considered perfect and the knowledge Kcx increases of two steps in the Fibonacci sequence
-A Card X that is answered will be shown again to the student in (Kcx-1) sessions.
+When all the card has been seen, the **session** is over : 
 
-For example, a student studies a new card "Where is Brian ?" -> "In the kitchen", and he places it to the ORANGE box, the Knowledge of the card changes from 1 to 2. 
-The card will be shown again to the student in the next session.
-On the next session, if he studies the same card and places it to the GREEN box, the Knowledge of the card changes from 2 to 4. The card will be studied again in 3 sessions. 
+- The cards in the red box will be studied again the same day
+- The cards in the orange box will be studied again the next
+- The cards in the green box, will be studied again two days later
 
-The goal of the program is: based on a file containing the evaluations of a user for a set of cards, to determine for each card in which session it will be asked in the future, plus the current knowledge of the cards.
+For example:
 
-Example of input :
+The 1st of may, the student starts studying a deck of cards, it is composed of three cards A, B and C (sort in alphabetic order by question name).
+The student puts the card A in the red box, the B card in the green box and the card C in the orange box.
+There is no cards left to study, but one of them, the card A, has been put in the red box and he has to study it again, he partly knows it now and put it in the orange box.
+The session of 1rst of may is over, the student takes the cards of the orange box and put them in the red box, and the cards from the green box in the orange.
+
+The 2nd of may, the student starts another session, the cards he needs to study are in the red box. He studies the card A, and remember the answer pretty well and put it in the green box. He studies the card C and he stills have hard time to remember it perfeclty and put it again in the orange box.
+
+The session of 2nd of may is over, the student takes the cards of the orange box and put them in the red box, and the cards from the green box in the orange.
+The session goes on like this until all the cards are found in the green box at the end of a session !
+
+---------------
+
+The goal of the exercise is : based on a file containing all the cards of a deck about art, to simulate the study sessions day by day. The user will run the program every day and the session will be interactive. The state at the end of a session can be stored in a file, the program will then say goodby and stop.
+When the user will run it again the next day it will automaticaly load the file containing the cards to study.
+When the program will finish with all the cards in the green box, it will congratulate the user and quit.
+
+Example of input file :
+```csv
+card question|card answer
+What enzyme breaks down sugars mouth and digestive tract?|Amylase
+How is dietary cholesterol transported to target tissues?|In chylomicrons
+What is the glucose transporter in the brain and what are its properties?|GLUT-1 transports glucose across blood-brain barrier, GLUT-3 transports glucose into neurons.  Both are high-affinity.
 ```
-session | card question                            | card answer | evaluation
-1       | (A) What is the first name of Dicaprio ?           | Leonardo        | GREEN
-1       | (B) What is the number between one and three ?           | Two      | ORANGE
-1       | (C) What is french translation for 'apple' ? | Pomme       | RED
-1       | (C) What is french translation for 'apple' ? | Pomme       | ORANGE
-2       | (C) What is french translation for 'apple' ? | Pomme       | GREEN
-2       | (B) What is the number between one and three ?           | Two      | ORANGE
-3       | (A) What is the first name of Dicaprio ?           | Leonardo        | GREEN
-```
-The output of the program :
-```
-card question | card | next session | current knowledge
-What is the first name of Dicaprio ? | Leonardo | 7 | 5
-What is the number between one and three ? | Two | 4 | 3
-What is french translation for 'apple' | Pomme | 5 | 4
-```
-You are invited to share your result on github using a Pull request toward our repository https://github.com/smartholiday/anki
+
+You are invited to share your result sending at recrutement_dev[AT]weekendesk.fr.
+
+IMPORTANT NOTES: 
+- do not forget Java is an OOP language
+- we prefer code quality over performance !
+- we prefer code quality over awesome features ! 
+
