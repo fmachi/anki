@@ -1,0 +1,3 @@
+com/smartholiday/test/anki/domain/ANKIGameTest.class
+com/smartholiday/test/anki/domain/CardTest.class
+com/smartholiday/test/anki/adapters/FileDeckRepositoryTest.class
