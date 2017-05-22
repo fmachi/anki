@@ -1,3 +1,15 @@
+#[Solution]
+This project contains a solution for the puzzle described below.
+It's a maven project that will produce a fat jat (Anki.jar) you can launch
+with the command
+
+> java -jar Anki.jar
+
+it expects to find a deck.csv file (as you can find in the test resource folder)
+in a directory named as the current day (20170523/deck.csv)
+Cards will be loaded from there and saved (at the end of the session) in the deck
+of tomorrow and in the deck of the day after tomorrow.
+
 #[Anki]
 
 Anki is a spaced repetition flashcard program. 
